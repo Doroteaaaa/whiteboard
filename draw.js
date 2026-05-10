@@ -1,7 +1,13 @@
+const socket = new WebSocket("wss://whiteboard-4l8v.onrender.com");
+socket.onopen = () => {
+    console.log("WebSocket connected");
+};
+
 const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
 const width = document.getElementById("width");
 const color = document.getElementById("color");
+
 
 let drawing = false;
 let tool = "pen";
@@ -98,12 +104,26 @@ canvas.addEventListener("mouseup", (e) =>{
     
     if(preview){
         shapes.push(preview);
+
+        socket.send(JSON.stringify({
+        type: "draw",
+        shape: preview
+    }));
     }
         
     preview = null;
     currentPath = [];
     render();
 })
+
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+
+    if (data.type === "draw") {
+        shapes.push(data.shape);
+        render();
+    }
+};
 
 function render(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);

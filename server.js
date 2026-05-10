@@ -5,13 +5,6 @@ const server = http.createServer();
 
 const wss = new WebSocket.Server({ server });
 
-const socket = new WebSocket("wss://whiteboard-4l8v.onrender.com");
-
-socket.onmessage = (event) => {
-    const data = JSON.parse(event.data);
-    draw(data);
-};
-
 wss.on("connection", (ws) => {
     ws.on("message", (message) => {
         wss.clients.forEach((client) => {
