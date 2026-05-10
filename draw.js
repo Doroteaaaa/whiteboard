@@ -3,6 +3,13 @@ const ctx = canvas.getContext("2d");
 const width = document.getElementById("width");
 const color = document.getElementById("color");
 
+const socket = new WebSocket("wss://whiteboard-4l8v.onrender.com");
+
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    draw(data);
+};
+
 let drawing = false;
 let tool = "pen";
 let startX;
