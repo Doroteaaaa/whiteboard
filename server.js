@@ -1,17 +1,22 @@
 const WebSocket = require("ws");
+const http = require("http");
 
-const wss = new WebSocket.Server({ port: process.env.PORT || 8080 });
+const server = http.createServer();
 
-wss.on("connection", ws => {
+const wss = new WebSocket.Server({ server });
 
-    ws.on("message", message => {
-
-        wss.clients.forEach(client => {
+wss.on("connection", (ws) => {
+    ws.on("message", (message) => {
+        wss.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
                 client.send(message);
             }
         });
-
     });
+});
 
+const PORT = process.env.PORT || 8080;
+
+server.listen(PORT, () => {
+    console.log("Server running on port", PORT);
 });
