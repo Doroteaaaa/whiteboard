@@ -1,0 +1,33 @@
+{
+  "name": "spotify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "appId": "moja.aplikacja",
+    "icon": "logo.ico",
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "installerIcon": "logo.ico",
+      "uninstallerIcon": "logo.ico"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^41.4.0",
+    "electron-builder": "^26.8.1"
+  },
+  "dependencies": {
+    "ws": "^8.20.0"
+  }
+}

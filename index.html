@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whiteboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+            <button id="pen">pen</button>
+            <button id="eraser">eraser</button>
+            <button id="square">square</button>
+            <button id="clear">clear</button>
+            <div class="width">
+                <input type="range" id="width" min="1" max="72" value="10">
+            </div>
+            <div class="color">
+                <input type="color" id="color">
+            </div>
+
+    </aside>
+
+    <canvas id="board"></canvas>
+    
+</body>
+<script src="draw.js"></script>
+<script src="hover.js"></script>
+</html>
